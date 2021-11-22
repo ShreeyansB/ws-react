@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 
 import React from "react";
 import colors from "./../Colors";
+import FadeUpAnim from "./Animations/FadeUpAnim";
 
 function Header() {
   return (
@@ -17,20 +18,26 @@ function Header() {
         w="100%"
       >
         <HStack onClick={() => window.location.reload()} cursor="pointer">
-          <HiChatAlt2 size={55} color={colors.primary} />
-          <Text fontSize="1.8rem" fontWeight={700} color={colors.primary}>
-            ws-chat
-          </Text>
+          <FadeUpAnim>
+            <HiChatAlt2 size={55} color={colors.primary} />
+          </FadeUpAnim>
+          <FadeUpAnim>
+            <Text fontSize="1.8rem" fontWeight={700} color={colors.primary}>
+              ws-chat
+            </Text>
+          </FadeUpAnim>
         </HStack>
-        <Link
-          href="https://github.com/ShreeyansB"
-          target="_blank"
-          _focus={{ border: "none" }}
-          _hover={{ opacity: 0.34 }}
-          opacity={0.27}
-        >
-          <FaGithub size={30} />
-        </Link>
+        <FadeUpAnim>
+          <Link
+            href="https://github.com/ShreeyansB"
+            target="_blank"
+            _focus={{ border: "none" }}
+            _hover={{ opacity: 0.34 }}
+            opacity={0.27}
+          >
+            <FaGithub size={30} />
+          </Link>
+        </FadeUpAnim>
       </Flex>
       <Box h={1} w="100%" bg="blackAlpha.200" />
     </VStack>
