@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -11,9 +11,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import FadeUpAnim from "./Animations/FadeUpAnim";
+import ConnContext from "./../store/conn-context";
 
 const MainSection = (props) => {
   const [formSwitch, setformSwitch] = useState(false);
+  const [btnIsLoading, setbtnIsLoading] = useState(false);
+
+  const connCtx = useContext(ConnContext);
 
   const [formData, setformData] = useState({
     name: "",
@@ -23,7 +27,32 @@ const MainSection = (props) => {
 
   const formHandler = (event) => {
     event.preventDefault();
-    console.log(formData);
+    const URL = formSwitch
+      ? "ws://" + formData.ip + ":" + formData.port
+      : process.env.WS_URL || "ws://null";
+    setbtnIsLoading(true);
+    try {
+      const socket = new WebSocket(URL);
+      socket.addEventListener("open", function (event) {
+        console.log("Connected to Server.");
+        setbtnIsLoading(false);
+      });
+
+      socket.onerror = function (event) {
+        console.log(event, "Failed to connect.");
+        setbtnIsLoading(false);
+      };
+
+      socket.addEventListener("disconnect", function (event) {
+        console.log(event, "Disconnected.");
+      });
+
+      socket.addEventListener("message", function (event) {
+        console.log("Message: ", event.data);
+      });
+    } catch (e) {
+      alert(e);
+    }
   };
 
   const returnForm = () => (
@@ -86,7 +115,7 @@ const MainSection = (props) => {
                   onChange={() => setformSwitch(() => !formSwitch)}
                 />
               </FormControl>
-              <Button colorScheme="blue" type="submit">
+              <Button isLoading={btnIsLoading} colorScheme="blue" type="submit">
                 Connect
               </Button>
             </VStack>
