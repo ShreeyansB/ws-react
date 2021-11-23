@@ -1,0 +1,13 @@
+.anim {
+  animation: animation 0.2s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

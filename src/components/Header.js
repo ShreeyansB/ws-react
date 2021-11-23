@@ -8,7 +8,7 @@ import FadeUpAnim from "./Animations/FadeUpAnim";
 
 function Header() {
   return (
-    <VStack spacing={0} position="fixed" top={0} left={0} width="100%">
+    <VStack spacing={0} position="fixed" top={0} left={0} width="100%" zIndex={2}>
       <Box h={2} w="100%" bg="blue.600" />
       <Flex
         py={2}

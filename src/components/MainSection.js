@@ -12,10 +12,21 @@ import {
 } from "@chakra-ui/react";
 import FadeUpAnim from "./Animations/FadeUpAnim";
 import ConnContext from "./../store/conn-context";
+import ReactDOM from "react-dom";
+import Backdrop from "./UI/Backdrop";
+import Modal from "./UI/Modal";
+import Chat from "./Chat";
 
 const MainSection = (props) => {
   const [formSwitch, setformSwitch] = useState(false);
   const [btnIsLoading, setbtnIsLoading] = useState(false);
+  const [isError, setIsError] = useState({
+    open: false,
+    title: "null",
+    subtitle: "null",
+    action: "null",
+    onClick: () => {},
+  });
 
   const connCtx = useContext(ConnContext);
 
@@ -36,15 +47,48 @@ const MainSection = (props) => {
       socket.addEventListener("open", function (event) {
         console.log("Connected to Server.");
         setbtnIsLoading(false);
+        props.setState((prev) => {
+          return {
+            ...prev,
+            name: formData.name,
+            isConnected: true,
+            socket: socket,
+          };
+        });
       });
 
       socket.onerror = function (event) {
         console.log(event, "Failed to connect.");
         setbtnIsLoading(false);
+        setIsError({
+          open: true,
+          title: "Connection Error",
+          subtitle:
+            "Cannot connect to the specified WebSocket. Server may be down.",
+          action: "Return",
+          onClick: () => {
+            setIsError((prev) => {
+              return { ...prev, open: false };
+            });
+            window.location.reload();
+          },
+        });
       };
 
       socket.addEventListener("disconnect", function (event) {
         console.log(event, "Disconnected.");
+        setIsError({
+          open: true,
+          title: "Connection Error",
+          subtitle: "Disconnected from the WebSocket.",
+          action: "Return",
+          onClick: () => {
+            setIsError((prev) => {
+              return { ...prev, open: false };
+            });
+            window.location.reload();
+          },
+        });
       });
 
       socket.addEventListener("message", function (event) {
@@ -56,9 +100,9 @@ const MainSection = (props) => {
   };
 
   const returnForm = () => (
-    <Flex justify="center" direction="row">
+    <Flex justify="center" direction="row" mb="6rem">
       <FadeUpAnim index={1} delay={0.2}>
-        <Box borderRadius="2xl" shadow="2xl" p={9}>
+        <Box borderRadius="2xl" shadow="xl" p={9}>
           <Heading>Enter Details</Heading>
           <br />
           <form onSubmit={formHandler}>
@@ -127,7 +171,17 @@ const MainSection = (props) => {
 
   return (
     <Box px={{ base: 8, md: "22vw" }} mt="10rem" w="100%">
-      {returnForm()}
+      {!connCtx.isConnected && returnForm()}
+      <Chat />
+
+      {ReactDOM.createPortal(
+        <Backdrop isError={isError} />,
+        document.getElementById("backdrop-root")
+      )}
+      {ReactDOM.createPortal(
+        <Modal isError={isError} />,
+        document.getElementById("backdrop-root")
+      )}
     </Box>
   );
 };
