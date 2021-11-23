@@ -16,6 +16,7 @@ function Header() {
         justify={{ base: "space-between" }}
         align="center"
         w="100%"
+        bg="white"
       >
         <HStack onClick={() => window.location.reload()} cursor="pointer">
           <FadeUpAnim>
