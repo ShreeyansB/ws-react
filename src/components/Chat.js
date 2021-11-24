@@ -18,8 +18,9 @@ const Chat = (props) => {
           mb="6rem"
           borderRadius="2xl"
           shadow="xl"
+          maxW="57rem"
         >
-          <Box w="100%" maxW="57rem">
+          <Box w="100%">
             <Flex
               direction="row"
               borderTopRadius="1rem"
@@ -56,6 +57,7 @@ const Chat = (props) => {
               />
             </Flex>
           </Box>
+          <Box w="100%" maxW="57rem" h={1.5} bg="blackAlpha.200"></Box>
           <ChatList />
         </Flex>
       </FadeUpAnim>

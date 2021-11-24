@@ -1,6 +1,7 @@
-import { VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import ChatBox from "./UI/ChatBox";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const ChatList = (props) => {
   const formatDate = (date) => {
@@ -12,41 +13,46 @@ const ChatList = (props) => {
   };
 
   return (
-    <VStack align="start" p={6} overflowY="auto" maxHeight="50vh">
-      <ChatBox
-        data={{
-          name: "Bupper",
-          msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-          id: "Bupper1234",
-          time: formatDate(new Date()),
-        }}
-      />
+    <Box justify="start" overflowY="hidden" maxHeight="50vh">
+      <Scrollbars style={{ width: "100%", height: "50vh", maxWidth: "57rem"}} autoHide>
+        <Box px={6} py={3}>
+          <ChatBox
+            data={{
+              name: "Bupper",
+              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
+              id: "Bupper1234",
+              time: formatDate(new Date()),
+            }}
+          />
 
-      <ChatBox
-        data={{
-          name: "Bupper",
-          msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-          id: "Bupper1234",
-          time: formatDate(new Date()),
-        }}
-      />
-      <ChatBox
-        data={{
-          name: "Bupper",
-          msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-          id: "Bupper1234",
-          time: formatDate(new Date()),
-        }}
-      />
-      <ChatBox
-        data={{
-          name: "Bupper",
-          msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-          id: "Bupper1234",
-          time: formatDate(new Date()),
-        }}
-      />
-    </VStack>
+          <ChatBox
+            data={{
+              name: "Bupper",
+              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
+              id: "Bupper1234",
+              time: formatDate(new Date()),
+              sentMsg: true,
+            }}
+          />
+          <ChatBox
+            data={{
+              name: "Bupper",
+              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
+              id: "Bupper1234",
+              time: formatDate(new Date()),
+            }}
+          />
+          <ChatBox
+            data={{
+              name: "Bupper",
+              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
+              id: "Bupper1234",
+              time: formatDate(new Date()),
+            }}
+          />
+        </Box>
+      </Scrollbars>
+    </Box>
   );
 };
 
