@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import ChatBox from "./UI/ChatBox";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import AlertBox from "./UI/AlertBox";
 
 const ChatList = (props) => {
   const formatDate = (date) => {
@@ -24,7 +25,9 @@ const ChatList = (props) => {
               time: formatDate(new Date()),
             }}
           />
-
+          <AlertBox data={{
+            msg: "Bupper123 has disconnected."
+          }}/>
           <ChatBox
             data={{
               name: "Bupper",

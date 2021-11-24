@@ -5,6 +5,7 @@ import FadeUpAnim from "./Animations/FadeUpAnim";
 import colors from "./../Colors";
 import { MdCancel } from "react-icons/md";
 import ChatList from "./ChatList";
+import TextField from "./TextField";
 
 const Chat = (props) => {
   const connCtx = useContext(ConnContext);
@@ -59,6 +60,7 @@ const Chat = (props) => {
           </Box>
           <Box w="100%" maxW="57rem" h={1.5} bg="blackAlpha.200"></Box>
           <ChatList />
+          <TextField />
         </Flex>
       </FadeUpAnim>
     )

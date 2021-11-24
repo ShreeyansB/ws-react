@@ -13,7 +13,7 @@ import colors from "./../../Colors";
 const ChatBox = (props) => {
   if (!props.data.sentMsg)
     return (
-      <Flex direction="row" align="start" maxWidth="30rem" float="left" mb={4}>
+      <Flex direction="row" align="start" maxWidth="30rem" float="left" mb={4} >
         <Tooltip label={props.data.id}>
           <Avatar
             name={props.data.name}
