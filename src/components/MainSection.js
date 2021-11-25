@@ -9,6 +9,7 @@ import {
   Flex,
   Switch,
   VStack,
+  Tooltip,
 } from "@chakra-ui/react";
 import FadeUpAnim from "./Animations/FadeUpAnim";
 import ConnContext from "./../store/conn-context";
@@ -172,7 +173,17 @@ const MainSection = (props) => {
                 </FormControl>
               )}
               <FormControl display="flex" alignItems="center">
-                <FormLabel>Use Local Socket Server?</FormLabel>
+                <FormLabel
+                  onDoubleClick={() =>
+                    window
+                      .open("https://github.com/ShreeyansB/ws-server", "_blank")
+                      .focus()
+                  }
+                >
+                  <Tooltip label="Double Click to see how to.">
+                    Use Local Socket Server?
+                  </Tooltip>
+                </FormLabel>
                 <Switch
                   colorScheme="blue"
                   isChecked={formSwitch}

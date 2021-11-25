@@ -30,7 +30,7 @@ function Header() {
         </HStack>
         <FadeUpAnim>
           <Link
-            href="https://github.com/ShreeyansB"
+            href="https://github.com/ShreeyansB/ws-react"
             target="_blank"
             _focus={{ border: "none" }}
             _hover={{ opacity: 0.34 }}
