@@ -11,7 +11,7 @@ const Chat = (props) => {
   const connCtx = useContext(ConnContext);
   const formatURL = (url) => {
     let x = url.split("?id")[0];
-    if (x === process.env.REACR_APP_WS_URL) return "ws-chat server#01";
+    if (x === process.env.REACT_APP_WS_URL) return "ws-chat server#01";
     else return x;
   };
 

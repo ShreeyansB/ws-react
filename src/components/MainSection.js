@@ -54,7 +54,7 @@ const MainSection = (props) => {
     } else {
       URL = formSwitch
         ? "ws://" + formData.ip.trim() + ":" + formData.port + "?id=" + userID
-        : process.env.WS_URL + "?id=" + userID && "ws://null";
+        : process.env.WS_URL + "?id=" + userID && "wss://null";
     }
     // console.log(URL);
     setbtnIsLoading(true);
