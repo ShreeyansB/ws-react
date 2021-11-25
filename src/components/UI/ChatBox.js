@@ -51,6 +51,7 @@ const ChatBox = (props) => {
             py={3}
             borderRadius={15}
             borderTopLeftRadius={5}
+            maxWidth="30rem"
           >
             <Text>{props.data.msg}</Text>
           </Box>
@@ -84,6 +85,7 @@ const ChatBox = (props) => {
             py={3}
             borderRadius={15}
             borderTopRightRadius={5}
+            maxWidth="30rem"
           >
             <Text color="white">{props.data.msg}</Text>
           </Box>

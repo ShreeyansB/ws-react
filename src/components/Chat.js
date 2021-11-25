@@ -10,7 +10,9 @@ import TextField from "./TextField";
 const Chat = (props) => {
   const connCtx = useContext(ConnContext);
   const formatURL = (url) => {
-    return url.split("?id")[0];
+    let x = url.split("?id")[0];
+    if (x === process.env.REACR_APP_WS_URL) return "ws-chat server#01";
+    else return x;
   };
 
   return (
