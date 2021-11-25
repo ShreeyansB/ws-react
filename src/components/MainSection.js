@@ -49,7 +49,7 @@ const MainSection = (props) => {
     if (formData.port === "" || formData.port === undefined) {
       URL = formSwitch
         ? "ws://" + formData.ip.trim() + "?id=" + userID
-        : process.env.WS_URL + "?id=" + userID && "ws://null";
+        : process.env.REACT_APP_WS_URL + "?id=" + userID;
     } else {
       URL = formSwitch
         ? "ws://" + formData.ip.trim() + ":" + formData.port + "?id=" + userID

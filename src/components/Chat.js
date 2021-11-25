@@ -9,6 +9,9 @@ import TextField from "./TextField";
 
 const Chat = (props) => {
   const connCtx = useContext(ConnContext);
+  const formatURL = (url) => {
+    return url.split("?id")[0];
+  };
 
   return (
     connCtx.isConnected && (
@@ -46,7 +49,7 @@ const Chat = (props) => {
                   fontFamily="monospace"
                   color={colors.secondary}
                 >
-                  {connCtx.socket.url}
+                  {formatURL(connCtx.socket.url)}
                 </Text>
               </Box>
               <MdCancel
