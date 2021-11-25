@@ -16,6 +16,7 @@ import ReactDOM from "react-dom";
 import Backdrop from "./UI/Backdrop";
 import Modal from "./UI/Modal";
 import Chat from "./Chat";
+import shortUUID from "short-uuid";
 
 const MainSection = (props) => {
   const [formSwitch, setformSwitch] = useState(false);
@@ -28,6 +29,8 @@ const MainSection = (props) => {
     onClick: () => {},
   });
 
+  const [messages, setMessages] = useState([]);
+
   const connCtx = useContext(ConnContext);
 
   const [formData, setformData] = useState({
@@ -36,14 +39,18 @@ const MainSection = (props) => {
     port: "",
   });
 
+  var socket;
+
   const formHandler = (event) => {
     event.preventDefault();
+    const userID = formData.name + "-" + shortUUID.generate();
     const URL = formSwitch
-      ? "ws://" + formData.ip + ":" + formData.port
-      : process.env.WS_URL || "ws://null";
+      ? "ws://" + formData.ip + ":" + formData.port + "?id=" + userID
+      : process.env.WS_URL + "?id=" + userID && "ws://null";
+    // console.log(URL);
     setbtnIsLoading(true);
     try {
-      const socket = new WebSocket(URL);
+      socket = new WebSocket(URL);
       socket.addEventListener("open", function (event) {
         console.log("Connected to Server.");
         setbtnIsLoading(false);
@@ -51,6 +58,7 @@ const MainSection = (props) => {
           return {
             ...prev,
             name: formData.name,
+            id: userID,
             isConnected: true,
             socket: socket,
           };
@@ -92,10 +100,14 @@ const MainSection = (props) => {
       });
 
       socket.addEventListener("message", function (event) {
-        console.log("Message: ", event.data);
+        // console.log("Message receieved: ", event.data);
+        setMessages((prev) => {
+          return [...prev, JSON.parse(event.data)];
+        });
       });
     } catch (e) {
       alert(e);
+      window.location.reload();
     }
   };
 
@@ -172,7 +184,7 @@ const MainSection = (props) => {
   return (
     <Box px={{ base: 8, md: "22vw" }} mt="10rem" w="100%">
       {!connCtx.isConnected && returnForm()}
-      <Chat />
+      <Chat messages={messages} />
 
       {ReactDOM.createPortal(
         <Backdrop isError={isError} />,

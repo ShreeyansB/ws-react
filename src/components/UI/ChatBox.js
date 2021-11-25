@@ -9,11 +9,20 @@ import {
   Box,
 } from "@chakra-ui/react";
 import colors from "./../../Colors";
+import classes from "./ChatBox.module.css";
 
 const ChatBox = (props) => {
-  if (!props.data.sentMsg)
+  if (!props.sentMsg)
     return (
-      <Flex direction="row" align="start" maxWidth="30rem" float="left" mb={4} >
+      <Flex
+        direction="row"
+        align="start"
+        maxWidth="30rem"
+        float="left"
+        mb={4}
+        width="100%"
+        className={classes.anim}
+      >
         <Tooltip label={props.data.id}>
           <Avatar
             name={props.data.name}
@@ -38,8 +47,8 @@ const ChatBox = (props) => {
           </HStack>
           <Box
             bg={colors.alt}
-            px={5}
-            py={4}
+            px={4}
+            py={3}
             borderRadius={15}
             borderTopLeftRadius={5}
           >
@@ -50,7 +59,15 @@ const ChatBox = (props) => {
     );
   else
     return (
-      <Flex direction="row" align="start" maxWidth="35rem" float="right" mb={4}>
+      <Flex
+        direction="row-reverse"
+        align="start"
+        maxWidth="30rem"
+        float="right"
+        mb={4}
+        width="100%"
+        className={classes.anim}
+      >
         <VStack align="end" ms={3}>
           <Text
             fontWeight={500}
@@ -63,8 +80,8 @@ const ChatBox = (props) => {
           </Text>
           <Box
             bg={colors.primary}
-            px={5}
-            py={4}
+            px={4}
+            py={3}
             borderRadius={15}
             borderTopRightRadius={5}
           >

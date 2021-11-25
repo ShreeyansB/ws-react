@@ -1,5 +1,5 @@
 .anim {
-  animation: animation 0.3s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+  animation: animation 0.6s cubic-bezier(0.5, 1, 0.89, 1) forwards;
   opacity: 0;
 }
 

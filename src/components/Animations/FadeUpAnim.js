@@ -1,5 +1,5 @@
-import React from 'react'
-import classes from './FadeUpAnim.module.css'
+import React from "react";
+import classes from "./FadeUpAnim.module.css";
 
 const FadeUpAnim = (props) => {
   const myStyle = {
@@ -7,10 +7,10 @@ const FadeUpAnim = (props) => {
   };
 
   return (
-    <div className={classes.anim} style={myStyle}>
+    <div className={classes.anim} style={{ ...props.style, ...myStyle }}>
       {props.children}
     </div>
   );
-}
+};
 
-export default FadeUpAnim
+export default FadeUpAnim;

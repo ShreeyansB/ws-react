@@ -11,7 +11,7 @@ const Chat = (props) => {
   const connCtx = useContext(ConnContext);
 
   return (
-    !connCtx.isConnected && (
+    connCtx.isConnected && (
       <FadeUpAnim delay={0.6}>
         <Flex
           justify="center"
@@ -59,7 +59,7 @@ const Chat = (props) => {
             </Flex>
           </Box>
           <Box w="100%" maxW="57rem" h={1.5} bg="blackAlpha.200"></Box>
-          <ChatList />
+          <ChatList messages={props.messages} />
           <TextField />
         </Flex>
       </FadeUpAnim>

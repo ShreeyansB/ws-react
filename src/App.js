@@ -6,6 +6,7 @@ import { useState } from "react";
 function App() {
   const [connState, setConnState] = useState({
     name: null,
+    id: null,
     isConnected: false,
     socket: null,
   });
