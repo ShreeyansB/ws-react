@@ -31,8 +31,8 @@ const ChatBox = (props) => {
           />
         </Tooltip>
         <VStack align="start" ms={3}>
-          <HStack>
-            <Text fontWeight={600} fontSize="1.2rem" color={colors.primary}>
+          <HStack align="center">
+            <Text fontWeight={600} fontSize={{ base: "1.05rem", sm: "1.2rem" }} color={colors.primary} isTruncated>
               {props.data.name}
             </Text>
             <Text

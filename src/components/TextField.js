@@ -48,10 +48,10 @@ const TextField = (props) => {
               focusBorderColor="none"
               rows={1}
               fontWeight={500}
-              fontSize="1.2rem"
+              fontSize={{ base: "1rem", sm: "1.2rem" }}
               me={4}
               ps={4}
-              pb={{ base: 4, sm: 1 }}
+              pb={{ base: 4, sm: 3 }}
               value={chatValue}
               onChange={handleChat}
               onKeyPress={handleKeyPress}

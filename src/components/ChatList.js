@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import ChatBox from "./UI/ChatBox";
 import { Scrollbars } from "react-custom-scrollbars-2";
@@ -37,44 +37,7 @@ const ChatList = (props) => {
       <Scrollbars style={{ width: "100%", height: "50vh", maxWidth: "57rem" }}>
         <Box px={6} py={3}>
           {returnMessages(props.messages)}
-          {/* <ChatBox
-            data={{
-              name: "Bupper",
-              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-              id: "Bupper1234",
-              time: formatDate(new Date()),
-            }}
-          />
-          <AlertBox
-            data={{
-              msg: "Bupper123 has disconnected.",
-            }}
-          />
-          <ChatBox
-            data={{
-              name: "Bupper",
-              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-              id: "Bupper1234",
-              time: formatDate(new Date()),
-              sentMsg: true,
-            }}
-          />
-          <ChatBox
-            data={{
-              name: "Bupper",
-              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-              id: "Bupper1234",
-              time: formatDate(new Date()),
-            }}
-          />
-          <ChatBox
-            data={{
-              name: "Bupper",
-              msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, magnam? Reiciendis obcaecati expedita nihil voluptates fugit, eos numquam accusamus quam in perferendis at itaque dolor possimus dolores quaerat iste minima.",
-              id: "Bupper1234",
-              time: formatDate(new Date()),
-            }}
-          /> */}
+          <Flex height="0.7rem" width="100%"></Flex>
         </Box>
       </Scrollbars>
     </Box>
