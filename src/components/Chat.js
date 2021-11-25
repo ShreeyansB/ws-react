@@ -46,8 +46,7 @@ const Chat = (props) => {
                   fontFamily="monospace"
                   color={colors.secondary}
                 >
-                  {/* {connCtx.socket.url} */}
-                  ws://192.168.1.1:3000
+                  {connCtx.socket.url}
                 </Text>
               </Box>
               <MdCancel

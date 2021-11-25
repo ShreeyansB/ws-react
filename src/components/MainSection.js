@@ -43,10 +43,18 @@ const MainSection = (props) => {
 
   const formHandler = (event) => {
     event.preventDefault();
-    const userID = formData.name + "-" + shortUUID.generate();
-    const URL = formSwitch
-      ? "ws://" + formData.ip + ":" + formData.port + "?id=" + userID
-      : process.env.WS_URL + "?id=" + userID && "ws://null";
+    const userID =
+      formData.name.replace(/\s+/g, "") + "-" + shortUUID.generate();
+    let URL;
+    if (formData.port === "" || formData.port === undefined) {
+      URL = formSwitch
+        ? "ws://" + formData.ip.trim() + "?id=" + userID
+        : process.env.WS_URL + "?id=" + userID && "ws://null";
+    } else {
+      URL = formSwitch
+        ? "ws://" + formData.ip.trim() + ":" + formData.port + "?id=" + userID
+        : process.env.WS_URL + "?id=" + userID && "ws://null";
+    }
     // console.log(URL);
     setbtnIsLoading(true);
     try {
@@ -149,7 +157,7 @@ const MainSection = (props) => {
                 </FormControl>
               )}
               {formSwitch && (
-                <FormControl isRequired>
+                <FormControl>
                   <FormLabel>Port</FormLabel>
                   <Input
                     placeholder="3000"
