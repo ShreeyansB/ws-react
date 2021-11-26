@@ -1,9 +1,11 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import ChatBox from "./UI/ChatBox";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import AlertBox from "./UI/AlertBox";
 import ConnContext from "./../store/conn-context";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const ChatList = (props) => {
   const formatDate = (date) => {
@@ -15,6 +17,11 @@ const ChatList = (props) => {
   };
 
   const connCtx = useContext(ConnContext);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    scrollRef.current.scrollToBottom();
+  }, [props.messages]);
 
   const returnMessages = (messages) => {
     return messages.map((msg, index) => {
@@ -34,7 +41,10 @@ const ChatList = (props) => {
 
   return (
     <Box justify="start" overflowY="hidden" maxHeight="50vh">
-      <Scrollbars style={{ width: "100%", height: "50vh", maxWidth: "57rem" }}>
+      <Scrollbars
+        style={{ width: "100%", height: "50vh", maxWidth: "57rem" }}
+        ref={scrollRef}
+      >
         <Box px={6} py={3}>
           {returnMessages(props.messages)}
           <Flex height="0.7rem" width="100%"></Flex>

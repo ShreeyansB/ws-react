@@ -12,6 +12,15 @@ import colors from "./../../Colors";
 import classes from "./ChatBox.module.css";
 
 const ChatBox = (props) => {
+  const formatMessage = (msg) => {
+    let array = msg.split("\n");
+    console.log(array);
+    return array.map((msg) => {
+      console.log("prntg:", msg);
+      return <Text color="white">{msg}</Text>;
+    });
+  };
+
   if (!props.sentMsg)
     return (
       <Flex
@@ -32,7 +41,12 @@ const ChatBox = (props) => {
         </Tooltip>
         <VStack align="start" ms={3}>
           <HStack align="center">
-            <Text fontWeight={600} fontSize={{ base: "1.05rem", sm: "1.2rem" }} color={colors.primary} isTruncated>
+            <Text
+              fontWeight={600}
+              fontSize={{ base: "1.05rem", sm: "1.2rem" }}
+              color={colors.primary}
+              isTruncated
+            >
               {props.data.name}
             </Text>
             <Text
@@ -87,7 +101,7 @@ const ChatBox = (props) => {
             borderTopRightRadius={5}
             maxWidth="30rem"
           >
-            <Text color="white">{props.data.msg}</Text>
+            {formatMessage(props.data.msg)}
           </Box>
         </VStack>
       </Flex>

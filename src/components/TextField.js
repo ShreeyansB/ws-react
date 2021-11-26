@@ -12,6 +12,11 @@ const TextField = (props) => {
 
   const sendMessage = () => {
     let message = chatValue.trim();
+    if (message.length > 540) {
+      setChatValue("");
+      return;
+    }
+    message = message.replace(/[\n]/g, "\n");
     if (message === "") return;
     const msg = {
       name: connCtx.name,
@@ -20,7 +25,6 @@ const TextField = (props) => {
       msg: message,
     };
     connCtx.socket.send(JSON.stringify(msg));
-    setChatValue("");
   };
 
   const handleChat = (event) => {
