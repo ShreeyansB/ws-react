@@ -67,7 +67,7 @@ const ChatBox = (props) => {
             borderTopLeftRadius={5}
             maxWidth="30rem"
           >
-            <Text>{props.data.msg}</Text>
+            <Text> {formatMessage(props.data.msg)}</Text>
           </Box>
         </VStack>
       </Flex>

@@ -25,6 +25,7 @@ const TextField = (props) => {
       msg: message,
     };
     connCtx.socket.send(JSON.stringify(msg));
+    setChatValue("");
   };
 
   const handleChat = (event) => {
